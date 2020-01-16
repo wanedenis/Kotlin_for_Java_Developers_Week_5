@@ -1,5 +1,7 @@
 package games.game2048
 
+import com.sun.deploy.net.MessageHeader.merge
+
 /*
  * This function moves all the non-null elements to the beginning of the list
  * (by removing nulls) and merges equal elements.
@@ -17,29 +19,30 @@ package games.game2048
  *
  * You can find more examples in 'TestGame2048Helper'.
 */
-fun <T : Any> List<T?>.moveAndMergeEqual(merge: (T) -> T): List<T> =
-val res = this.filterNotNull().toMutableList()
-val fin = mutableListOf<T>()
-var boom = 0
-for (i in 0 until res.size) {
-    val j = i+1
-    if (boom > 0) {
-        boom = 0
-        continue
-    }
-    if (j < res.size) {
-        val f = res[i]
-        val s = res[j]
-        if (f == s) {
-            fin.add(merge(f))
-            boom++
-        } else {
-            fin.add(f)
+fun <T : Any> List<T?>.moveAndMergeEqual(merge: (T) -> T): List<T> {
+    val res = this.filterNotNull().toMutableList()
+    val fin = mutableListOf<T>()
+    var boom = 0
+    for (i in 0 until res.size) {
+        val j = i+1
+        if (boom > 0) {
+            boom = 0
+            continue
         }
-    } else if (j == res.size) {
-        fin.add(res[i])
-    } else {
-        continue
+        if (j < res.size) {
+            val f = res[i]
+            val s = res[j]
+            if (f == s) {
+                fin.add(merge(f))
+                boom++
+            } else {
+                fin.add(f)
+            }
+        } else if (j == res.size) {
+            fin.add(res[i])
+        } else {
+            continue
+        }
     }
+    return fin
 }
-return fin
