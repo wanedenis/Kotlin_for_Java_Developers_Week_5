@@ -55,7 +55,7 @@ files:
       length: 6
       offset: 90
     initialized_from_dependency: false
-    selected: false
+    selected: true
     status: Unchecked
   - offset: 149
     length: 6
@@ -1608,6 +1608,12 @@ files:
 - name: assignmentKey
   visible: false
   learner_created: false
+- name: src/board/SquareBoardImpl.kt
+  visible: true
+  learner_created: true
+- name: src/board/GameBoardImpl.kt
+  visible: true
+  learner_created: true
 feedback_link: https://www.coursera.org/learn/kotlin-for-java-developers/programming/NSid0/game-2048-game-of-fifteen/discussions
 status: Unchecked
 record: -1
