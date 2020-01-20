@@ -41,9 +41,9 @@ class Game2048(private val initializer: Game2048Initializer<Int>) : Game {
  * Add a new value produced by 'initializer' to a specified cell in a board.
  */
 fun GameBoard<Int?>.addNewValue(initializer: Game2048Initializer<Int>) {
-    val ini = initializer.nextValue(this)
-    if (ini != null)
-        this.set(ini.first, ini.second)
+    initializer.nextValue(this)?.let { (cell, value) ->
+        this[cell] = value
+    }
 }
 
 /*
@@ -55,23 +55,15 @@ fun GameBoard<Int?>.addNewValue(initializer: Game2048Initializer<Int>) {
  * Return 'true' if the values were moved and 'false' otherwise.
  */
 fun GameBoard<Int?>.moveValuesInRowOrColumn(rowOrColumn: List<Cell>): Boolean {
-    val values = mutableListOf<Int?>()
-    for(c in rowOrColumn) {
-        values.add(this.get(c))
+    val cellValues = rowOrColumn.map { this[it] }
+    val updatedValues = cellValues.moveAndMergeEqual { it * 2 }
+    if (updatedValues.isNotEmpty() && cellValues != updatedValues) {
+        for ((index, cell) in rowOrColumn.withIndex()) {
+            this[cell] = updatedValues.getOrNull(index)
+        }
+        return true
     }
-    val fin = values.moveAndMergeEqual { it * 2 }
-    if (values.size == fin.size) {
-        return false
-    }
-    var i = 0
-    for (c in rowOrColumn) {
-        if (i < fin.size)
-            this.set(c, fin[i])
-        else
-            this.set(c, null)
-        i++
-    }
-    return true
+    return false
 }
 
 /*
@@ -81,38 +73,24 @@ fun GameBoard<Int?>.moveValuesInRowOrColumn(rowOrColumn: List<Cell>): Boolean {
  * Use the 'moveValuesInRowOrColumn' function above.
  * Return 'true' if the values were moved and 'false' otherwise.
  */
-fun GameBoard<Int?>.moveValues(direction: Direction): Boolean { val width = this.width
-    val AllCell = this.getAllCells()
-    val origList = mutableListOf<Int>()
-    for (ac in AllCell) {
-        val t = this.get(ac)
-        if (t == null)
-            origList.add(0)
-        else
-            origList.add(t)
+fun GameBoard<Int?>.moveValues(direction: Direction): Boolean {
+    var moved = false
+    val (row, reversed) = when (direction) {
+        Direction.LEFT -> true to false
+        Direction.RIGHT -> true to true
+        Direction.UP -> false to false
+        Direction.DOWN -> false to true
     }
-    when(direction) {
-        Direction.UP -> for (j in width downTo 1){ moveValuesInRowOrColumn(this.getColumn(1..width, j).toList()) }
-        Direction.DOWN -> for (j in 1..width){ moveValuesInRowOrColumn(this.getColumn(width downTo 1, j).toList())}
-        Direction.RIGHT -> for (i in width downTo 1){ moveValuesInRowOrColumn(this.getRow(i, width downTo 1).toList())}
-        Direction.LEFT -> for (i in 1..width){ moveValuesInRowOrColumn(this.getRow(i, 1..width).toList())}
-    }
-    val newList = mutableListOf<Int>()
-    for (ac in AllCell) {
-        val t = this.get(ac)
-        if (t == null)
-            newList.add(0)
-        else
-            newList.add(t)
-    }
-    if (origList.size == newList.size) {
-        var fg = 0
-        for (i in 0 until origList.size) {
-            if (origList[i] != newList[i]) {
-                fg++
-            }
+    val range = if (reversed) (width downTo 1) else (1..width)
+    for (count in 1..width) {
+        val result = if (row) {
+            moveValuesInRowOrColumn(getRow(count, range))
+        } else {
+            moveValuesInRowOrColumn(getColumn(range, count))
         }
-        return (!(fg == 0))
+        if (result) {
+            moved = true
+        }
     }
-    return true
+    return moved
 }

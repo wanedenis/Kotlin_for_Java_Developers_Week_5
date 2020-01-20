@@ -48,7 +48,7 @@ files:
 - name: src/board/BoardImpl.kt
   visible: true
   placeholders:
-  - offset: 93
+  - offset: 2173
     length: 6
     placeholder_text: TODO()
     initial_state:
@@ -56,8 +56,8 @@ files:
       offset: 90
     initialized_from_dependency: false
     selected: true
-    status: Failed
-  - offset: 152
+    status: Unchecked
+  - offset: 2232
     length: 6
     placeholder_text: TODO()
     initial_state:
@@ -65,7 +65,7 @@ files:
       offset: 149
     initialized_from_dependency: false
     selected: false
-    status: Failed
+    status: Unchecked
   text: |+
     package board
 
@@ -94,24 +94,24 @@ files:
   visible: true
   placeholders:
   - offset: 1227
-    length: 6
+    length: 51
     placeholder_text: TODO()
     initial_state:
       length: 6
       offset: 1227
     initialized_from_dependency: false
     selected: true
-    status: Failed
-  - offset: 1705
-    length: 6
+    status: Unchecked
+  - offset: 1227
+    length: 51
     placeholder_text: TODO()
     initial_state:
       length: 6
       offset: 1705
     initialized_from_dependency: false
     selected: true
-    status: Failed
-  - offset: 2052
+    status: Unchecked
+  - offset: 1414
     length: 6
     placeholder_text: TODO()
     initial_state:
@@ -119,7 +119,7 @@ files:
       offset: 2052
     initialized_from_dependency: false
     selected: true
-    status: Failed
+    status: Unchecked
   text: |-
     package games.game2048
 
@@ -193,15 +193,15 @@ files:
 - name: src/games/game2048/Game2048Helper.kt
   visible: true
   placeholders:
-  - offset: 878
-    length: 6
+  - offset: 720
+    length: 0
     placeholder_text: TODO()
     initial_state:
       length: 6
       offset: 730
     initialized_from_dependency: false
     selected: true
-    status: Failed
+    status: Unchecked
   text: |+
     package games.game2048
 
@@ -230,14 +230,14 @@ files:
   visible: true
   placeholders:
   - offset: 820
-    length: 6
+    length: 13
     placeholder_text: TODO()
     initial_state:
       length: 6
       offset: 820
     initialized_from_dependency: false
     selected: false
-    status: Failed
+    status: Unchecked
   text: |-
     package games.game2048
 
@@ -271,15 +271,15 @@ files:
 - name: src/games/gameOfFifteen/GameOfFifteen.kt
   visible: true
   placeholders:
-  - offset: 385
-    length: 6
+  - offset: 88
+    length: 0
     placeholder_text: TODO()
     initial_state:
       length: 6
       offset: 385
     initialized_from_dependency: false
     selected: true
-    status: Failed
+    status: Unchecked
   text: |+
     package games.gameOfFifteen
 
@@ -299,7 +299,7 @@ files:
 - name: src/games/gameOfFifteen/GameOfFifteenHelper.kt
   visible: true
   placeholders:
-  - offset: 480
+  - offset: 787
     length: 6
     placeholder_text: TODO()
     initial_state:
@@ -307,7 +307,7 @@ files:
       offset: 480
     initialized_from_dependency: false
     selected: false
-    status: Failed
+    status: Unchecked
   text: |-
     package games.gameOfFifteen
 
@@ -328,7 +328,7 @@ files:
 - name: src/games/gameOfFifteen/GameOfFifteenInitializer.kt
   visible: true
   placeholders:
-  - offset: 576
+  - offset: 613
     length: 6
     placeholder_text: TODO()
     initial_state:
@@ -336,7 +336,7 @@ files:
       offset: 576
     initialized_from_dependency: false
     selected: true
-    status: Failed
+    status: Unchecked
   text: |+
     package games.gameOfFifteen
 
@@ -1608,12 +1608,12 @@ files:
 - name: assignmentKey
   visible: false
   learner_created: false
-- name: src/board/SquareBoardImpl.kt
-  visible: true
-  learner_created: true
 - name: src/board/GameBoardImpl.kt
   visible: true
   learner_created: true
+- name: src/board/SquareBoardImpl_.kt
+  visible: true
+  learner_created: true
 feedback_link: https://www.coursera.org/learn/kotlin-for-java-developers/programming/NSid0/game-2048-game-of-fifteen/discussions
-status: Failed
+status: Unchecked
 record: -1

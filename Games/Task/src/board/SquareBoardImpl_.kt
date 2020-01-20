@@ -2,7 +2,7 @@ package board
 
 import com.sun.xml.internal.bind.v2.TODO
 
-open class SquareBoardImpl(override val width: Int) : SquareBoard {
+open class SquareBoardImpl_(override val width: Int) : SquareBoard {
 
     private val allCells = mutableListOf<Cell>()
 

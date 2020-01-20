@@ -1,6 +1,6 @@
 package board
 
-class GameBoardImpl<T>(width: Int) : SquareBoardImpl(width), GameBoard<T> {
+class GameBoardImpl_<T>(width: Int) : SquareBoardImpl(width), GameBoard<T> {
 
     private val map =  mutableMapOf<Cell, T?>()
     private val board = SquareBoardImpl(width)
